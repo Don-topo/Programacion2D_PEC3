@@ -26,7 +26,13 @@ public class BoxController : MonoBehaviour
         }
 
         animator.SetTrigger("break");
-        GameObject newObject =  Instantiate(potion, transform.position, Quaternion.identity, null);        
+        StartCoroutine(SpawnObject());
         Destroy(gameObject, 3);
+    }
+
+    IEnumerator SpawnObject()
+    {
+        yield return new WaitForSeconds(1);
+        Instantiate(potion, transform.position, Quaternion.identity, null);
     }
 }

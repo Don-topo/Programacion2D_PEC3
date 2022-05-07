@@ -10,41 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Test table Shared Data
+  m_Name: Forest Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Main menu
-  m_TableCollectionNameGuidString: 1f6e76b07166155459477d754d69a080
+  m_TableCollectionName: Forest
+  m_TableCollectionNameGuidString: c2ccbbdebcdc97241bd40a797e0fe8bc
   m_Entries:
-  - m_Id: 719356625637376
-    m_Key: NewGame
+  - m_Id: 5007057571840
+    m_Key: JumpTutorial1
     m_Metadata:
       m_Items: []
-  - m_Id: 720014250561536
-    m_Key: Continue
+  - m_Id: 4868620374016
+    m_Key: Entry
     m_Metadata:
       m_Items: []
-  - m_Id: 720123826753536
-    m_Key: Exit
+  - m_Id: 43540329746432
+    m_Key: JumpTutorial2
     m_Metadata:
       m_Items: []
-  - m_Id: 720413250506752
-    m_Key: Yes
+  - m_Id: 43828902055936
+    m_Key: BoxTutorial1
     m_Metadata:
       m_Items: []
-  - m_Id: 720470133657600
-    m_Key: No
-    m_Metadata:
-      m_Items: []
-  - m_Id: 720519265734656
-    m_Key: QuitTheGame
-    m_Metadata:
-      m_Items: []
-  - m_Id: 736937373814784
-    m_Key: Credits
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1382117273718784
-    m_Key: Title
+  - m_Id: 44369254240256
+    m_Key: BoxTutorial2
     m_Metadata:
       m_Items: []
   m_Metadata:
@@ -56,4 +44,4 @@ MonoBehaviour:
     00000000:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1651600464042
+        m_CustomEpoch: 1651931740945

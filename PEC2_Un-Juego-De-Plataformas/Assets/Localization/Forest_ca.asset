@@ -10,44 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Test table_ca
+  m_Name: Forest_ca
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: ca
-  m_SharedData: {fileID: 11400000, guid: 1f6e76b07166155459477d754d69a080, type: 2}
+  m_SharedData: {fileID: 11400000, guid: c2ccbbdebcdc97241bd40a797e0fe8bc, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 719356625637376
-    m_Localized: Nou Joc
+  - m_Id: 4868620374016
+    m_Localized: Tinc que trobar el castell
     m_Metadata:
       m_Items: []
-  - m_Id: 720014250561536
-    m_Localized: Continuar
+  - m_Id: 5007057571840
+    m_Localized: "Aquest sortint \xE9s una mica alt per\xF2 crec que saltant puc
+      superar-ho"
     m_Metadata:
       m_Items: []
-  - m_Id: 720123826753536
-    m_Localized: Sortir
+  - m_Id: 43540329746432
+    m_Localized: Per saltar prem la tecla de la barra d'espai
     m_Metadata:
       m_Items: []
-  - m_Id: 720413250506752
-    m_Localized: SI
+  - m_Id: 43828902055936
+    m_Localized: "All\xE0 hi ha caixes de subministraments, se n'han d'haver caigut"
     m_Metadata:
       m_Items: []
-  - m_Id: 720470133657600
-    m_Localized: NO
-    m_Metadata:
-      m_Items: []
-  - m_Id: 720519265734656
-    m_Localized: Sortir del joc?
-    m_Metadata:
-      m_Items: []
-  - m_Id: 736937373814784
-    m_Localized: "Cr\xE9dits"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1382117273718784
-    m_Localized: Un Joc De Plataformes
+  - m_Id: 44369254240256
+    m_Localized: "Apropa't a la caixa i prem el bot\xF3 esquerre del ratol\xED per
+      trencar-la"
     m_Metadata:
       m_Items: []
   references:

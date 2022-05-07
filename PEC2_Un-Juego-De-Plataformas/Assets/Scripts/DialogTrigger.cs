@@ -6,10 +6,18 @@ public class DialogTrigger : MonoBehaviour
 {
     public Dialog dialog;
 
-    
     public void TriggerDialoge()
     {
         DialogManager.Instance.StartDialog(dialog);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            TriggerDialoge();
+            Destroy(this);
+        }
     }
 
 }

@@ -10,44 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Test table_en
+  m_Name: Forest_en
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en
-  m_SharedData: {fileID: 11400000, guid: 1f6e76b07166155459477d754d69a080, type: 2}
+  m_SharedData: {fileID: 11400000, guid: c2ccbbdebcdc97241bd40a797e0fe8bc, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 719356625637376
-    m_Localized: New Game
+  - m_Id: 4868620374016
+    m_Localized: I must find the castle
     m_Metadata:
       m_Items: []
-  - m_Id: 720014250561536
-    m_Localized: Continue
+  - m_Id: 5007057571840
+    m_Localized: That ledge is a bit high but I think that by jumping I can get over
+      it
     m_Metadata:
       m_Items: []
-  - m_Id: 720123826753536
-    m_Localized: Exit
+  - m_Id: 43540329746432
+    m_Localized: To jump press the space bar key
     m_Metadata:
       m_Items: []
-  - m_Id: 720413250506752
-    m_Localized: YES
+  - m_Id: 43828902055936
+    m_Localized: There are boxes of supplies, they must have been dropped
     m_Metadata:
       m_Items: []
-  - m_Id: 720470133657600
-    m_Localized: NO
-    m_Metadata:
-      m_Items: []
-  - m_Id: 720519265734656
-    m_Localized: Quit the game
-    m_Metadata:
-      m_Items: []
-  - m_Id: 736937373814784
-    m_Localized: Credits
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1382117273718784
-    m_Localized: A Platform Game
+  - m_Id: 44369254240256
+    m_Localized: Approach the box and press the left mouse button to break it
     m_Metadata:
       m_Items: []
   references:

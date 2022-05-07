@@ -18,7 +18,13 @@ MonoBehaviour:
   m_GUID: f89eeb705145b0645ba95bbeb4581bf7
   m_SerializeEntries:
   - m_GUID: e11a2ad28f7b90543adb1273c812d49c
-    m_Address: Test table_ca
+    m_Address: Main menu_ca
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ca
+    - Preload
+  - m_GUID: 21b644360d2da874bbbf3c2171628040
+    m_Address: Forest_ca
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ca

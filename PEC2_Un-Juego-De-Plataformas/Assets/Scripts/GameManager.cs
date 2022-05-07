@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
     {
         pauseCanvas.gameObject.SetActive(true);
         isGamePaused = true;
+        StopPlayer();
         Time.timeScale = 0f;
     }
 
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
     {
         pauseCanvas.gameObject.SetActive(false);
         isGamePaused = false;
+        StartPlayer();
         Time.timeScale = 1f;
     }
 
@@ -177,7 +179,12 @@ public class GameManager : MonoBehaviour
 
     public void StopPlayer()
     {
-        playerCanPlay = !playerCanPlay;
+        playerCanPlay = false;
+    }
+
+    public void StartPlayer()
+    {
+        playerCanPlay = true;
     }
 
     public bool PlayerCanMove()

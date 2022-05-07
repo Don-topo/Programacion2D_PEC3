@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class DialogManager : MonoBehaviour
 {
@@ -29,10 +30,10 @@ public class DialogManager : MonoBehaviour
 
     public void StartDialog(Dialog dialog)
     {
-        sentences.Clear();
-        foreach(string sentence in dialog.sentences)
+        sentences.Clear();     
+        foreach(LocalizedString sentence in dialog.sentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(sentence.GetLocalizedStringAsync().Result);
         }
         animator.SetBool("Active", true);
         GameManager.Instance.StopPlayer();
@@ -44,7 +45,7 @@ public class DialogManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             EndDialogue();
-            GameManager.Instance.StopPlayer();
+            GameManager.Instance.StartPlayer();
             return;
         }
 

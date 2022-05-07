@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         audioSource = gameObject.GetComponent<AudioSource>();
+        capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -131,6 +132,12 @@ public class PlayerController : MonoBehaviour
                     dash = false;
                 }
             }
+        }
+        else
+        {
+            rigidbody.velocity = Vector2.zero;
+            movement = 0f;
+            CheckMovement();
         }
 
     }
