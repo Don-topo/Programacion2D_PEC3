@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private bool isGamePaused = false;
     private bool isGameOnConfirmedPage = false;
     private static GameManager gmInstance;
+    private bool playerCanPlay = true;
 
     public static GameManager Instance { get { return gmInstance; } }
     
@@ -172,6 +173,16 @@ public class GameManager : MonoBehaviour
         gameInfo.currentLevel++;       
         FileManager.SaveData(gameInfo);
         SceneManager.LoadScene(gameInfo.currentLevel);
+    }
+
+    public void StopPlayer()
+    {
+        playerCanPlay = !playerCanPlay;
+    }
+
+    public bool PlayerCanMove()
+    {
+        return playerCanPlay;
     }
   
 }

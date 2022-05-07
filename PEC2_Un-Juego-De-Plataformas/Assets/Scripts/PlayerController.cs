@@ -35,7 +35,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 lastGroundedPosition;
     private float jumpCounter;
     private bool doubleJumpEnabled = false;
+    private bool dashEnabled = false;
     private bool isJumping = true;
+    private bool isDashing = false;
+    private bool doubleJump = true;
+    private bool dash = true;
+    private CapsuleCollider2D capsuleCollider;
 
 
     private void Awake()
@@ -47,71 +52,86 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
-        movement = Input.GetAxisRaw("Horizontal") * movementSpeed;
-        Vector3 targetVelocity = new Vector2(movement * 0.2f, rigidbody.velocity.y);
-        Vector3 test = Vector3.zero;
-        rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref test, .05f);
+    {
+        if (GameManager.Instance.PlayerCanMove())
+        {
+            movement = Input.GetAxisRaw("Horizontal") * movementSpeed;
+            Vector3 targetVelocity = new Vector2(movement * 0.2f, rigidbody.velocity.y);
+            Vector3 test = Vector3.zero;
+            rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref test, .05f);
 
-        if(Input.GetButtonDown("Jump") && grounded)
-        {
-            // Jump
-            rigidbody.AddForce(Vector2.up * jumpForce);
-            isJumping = true;
-            jumpCounter = jumpMaxTime;
-        }
-
-        if(movement > 0.01f && !playerIsFacingRight)
-        {
-            FlipPlayer();
-        }
-        else if (movement < -0.01f && playerIsFacingRight)
-        {
-            FlipPlayer();
-        }
-        else if(movement == 0)
-        {
-            rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
-        }
-
-        CheckMovement();
-        
-        if(Input.GetMouseButtonDown(1) && grounded)
-        {            
-            Dash();
-        }
-
-        if(Time.time >= nextAttackTime)
-        {
-            if (Input.GetMouseButtonDown(0) && grounded)
+            if (Input.GetButtonDown("Jump") && (grounded || doubleJump))
             {
-                Attack();
-                nextAttackTime = Time.time + 1f / attackRange;
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if(jumpCounter > 0 && isJumping)
-            {
+                // Jump
+                if (!grounded)
+                {
+                    doubleJump = false;
+                }
                 rigidbody.AddForce(Vector2.up * jumpForce);
-                jumpCounter -= Time.deltaTime;
+                isJumping = true;
+                jumpCounter = jumpMaxTime;
             }
-            else
+
+            if (movement > 0.01f && !playerIsFacingRight)
+            {
+                FlipPlayer();
+            }
+            else if (movement < -0.01f && playerIsFacingRight)
+            {
+                FlipPlayer();
+            }
+            else if (movement == 0)
+            {
+                rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+            }
+
+            CheckMovement();
+
+            if (Input.GetMouseButtonDown(1) && grounded)
+            {
+                Dash();
+            }
+
+            if (Time.time >= nextAttackTime)
+            {
+                if (Input.GetMouseButtonDown(0) && grounded)
+                {
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRange;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact();
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (jumpCounter > 0 && isJumping)
+                {
+                    rigidbody.AddForce(Vector2.up * jumpForce);
+                    jumpCounter -= Time.deltaTime;
+                }
+                else
+                {
+                    isJumping = false;
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 isJumping = false;
-            }            
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isJumping = false;
-        }
+            }
 
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if(!grounded && dash)
+                {                   
+                    rigidbody.AddForce(Vector2.right * jumpForce, ForceMode2D.Impulse);
+                    dash = false;
+                }
+            }
+        }
 
     }
 
@@ -192,6 +212,8 @@ public class PlayerController : MonoBehaviour
             float xOffset;
 
             grounded = true;
+            doubleJump = true;
+            dash = true;
             if (playerIsFacingRight)
             {
                 xOffset = -2f;
@@ -243,16 +265,27 @@ public class PlayerController : MonoBehaviour
     {
         // Dash
         animator.SetTrigger("Dash");
-        // TODO add facing dash movement
         rigidbody.velocity = Vector2.zero;
         if (playerIsFacingRight)
         {
-            rigidbody.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);
+            rigidbody.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);            
         }
         else
         {
             rigidbody.AddForce(Vector2.left * dashSpeed, ForceMode2D.Impulse);
         }
+        StartCoroutine(Dashing());
+    }
+
+    IEnumerator Dashing()
+    {
+        rigidbody.isKinematic = true;
+        capsuleCollider.enabled = false;
+        isDashing = true;
+        yield return new WaitForSeconds(1);
+        capsuleCollider.enabled = true;
+        rigidbody.isKinematic = false;
+        isDashing = false;
     }
 
     public void FallIntoSpikes()
