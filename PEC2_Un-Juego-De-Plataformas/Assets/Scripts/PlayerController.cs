@@ -187,6 +187,10 @@ public class PlayerController : MonoBehaviour
             {
                 cl.GetComponent<SpawnCoins>().Spawn();
             }
+            else if (cl.gameObject.CompareTag("Door"))
+            {
+                cl.GetComponent<CompleteLevel>().EndLevel();
+            }
         }
     }
 

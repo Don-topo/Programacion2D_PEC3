@@ -40,5 +40,9 @@ MonoBehaviour:
       para romperla"
     m_Metadata:
       m_Items: []
+  - m_Id: 79557032103936
+    m_Localized: Siguiente
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

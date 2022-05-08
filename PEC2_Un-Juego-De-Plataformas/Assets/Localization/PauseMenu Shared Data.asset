@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Forest Shared Data
+  m_Name: PauseMenu Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Forest
-  m_TableCollectionNameGuidString: c2ccbbdebcdc97241bd40a797e0fe8bc
+  m_TableCollectionName: PauseMenu
+  m_TableCollectionNameGuidString: 8b86357a773fbf547b8540aa5f0a9921
   m_Entries:
-  - m_Id: 5007057571840
-    m_Key: JumpTutorial1
+  - m_Id: 13835128832
+    m_Key: GamePaused
     m_Metadata:
       m_Items: []
-  - m_Id: 4868620374016
-    m_Key: Entry
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43540329746432
-    m_Key: JumpTutorial2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43828902055936
-    m_Key: BoxTutorial1
-    m_Metadata:
-      m_Items: []
-  - m_Id: 44369254240256
-    m_Key: BoxTutorial2
-    m_Metadata:
-      m_Items: []
-  - m_Id: 79557032103936
+  - m_Id: 48081620992
     m_Key: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88623763456
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128905859072
+    m_Key: Sure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321196032
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 178583195648
+    m_Key: No
     m_Metadata:
       m_Items: []
   m_Metadata:
@@ -48,4 +48,4 @@ MonoBehaviour:
     00000000:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1651931740945
+        m_CustomEpoch: 1652002199857

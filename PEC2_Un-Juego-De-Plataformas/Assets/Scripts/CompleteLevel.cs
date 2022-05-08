@@ -5,11 +5,26 @@ using UnityEngine;
 public class CompleteLevel : MonoBehaviour
 {
 
+    public GameObject helpGameObject;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.LevelCompleted();
+            helpGameObject.SetActive(true);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            helpGameObject.SetActive(false);
+        }
+    }
+
+    public void EndLevel()
+    {
+        GameManager.Instance.LevelCompleted();
     }
 }

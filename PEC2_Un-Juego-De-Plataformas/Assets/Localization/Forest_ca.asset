@@ -40,5 +40,9 @@ MonoBehaviour:
       trencar-la"
     m_Metadata:
       m_Items: []
+  - m_Id: 79557032103936
+    m_Localized: "Seg\xFCent"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

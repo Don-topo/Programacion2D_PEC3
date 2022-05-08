@@ -39,5 +39,9 @@ MonoBehaviour:
     m_Localized: Approach the box and press the left mouse button to break it
     m_Metadata:
       m_Items: []
+  - m_Id: 79557032103936
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

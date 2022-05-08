@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,8 +8,10 @@ public class MainMenu : MonoBehaviour
     public Canvas mainCanvas;
     public Canvas exitCanvas;
     public GameObject continueButton;
+    public Animator sceneTransitionAnimator;
 
     private GameInfo gameInfo;
+    private float transitionTime = 1f;
 
     private void Start()
     {
@@ -20,12 +23,13 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.GetComponent<Button>().interactable = false;            
         }
+
     }
 
     public void StartGame()
     {
         FileManager.DestroyData();
-        SceneManager.LoadScene("Forest");
+        StartCoroutine(LoadLevel());
     }
 
     public void ExitGame()
@@ -48,6 +52,13 @@ public class MainMenu : MonoBehaviour
     {
         exitCanvas.gameObject.SetActive(false);
         mainCanvas.gameObject.SetActive(true);
+    }
+
+    IEnumerator LoadLevel()
+    {
+        sceneTransitionAnimator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("Forest");
     }
 
 }
