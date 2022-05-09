@@ -35,8 +35,32 @@ MonoBehaviour:
     m_Key: BoxTutorial2
     m_Metadata:
       m_Items: []
-  - m_Id: 79557032103936
-    m_Key: Continue
+  - m_Id: 647155704614912
+    m_Key: ChestTutorial1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 647185584836608
+    m_Key: ChestTutorial2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649124993257472
+    m_Key: EnemyTutorial1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649158841290752
+    m_Key: EnemyTutorial2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649187710685184
+    m_Key: EnemyTutorial3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650447788658688
+    m_Key: EndTutorial1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 653342621782016
+    m_Key: EndTutorial2
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -17,6 +17,30 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 8b86357a773fbf547b8540aa5f0a9921, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 13835128832
+    m_Localized: Game Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48081620992
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88623763456
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 160321196032
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 178583195648
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128905859072
+    m_Localized: Are you sure?
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

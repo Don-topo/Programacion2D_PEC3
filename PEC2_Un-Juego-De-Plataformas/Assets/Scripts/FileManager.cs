@@ -26,7 +26,7 @@ public static class FileManager
         }
         else
         {
-            return new GameInfo(1, 0, 0, 1, 4);
+            return new GameInfo(1, 0, 0, 1, 4, 1, false, false, 0);
         }
     }
 

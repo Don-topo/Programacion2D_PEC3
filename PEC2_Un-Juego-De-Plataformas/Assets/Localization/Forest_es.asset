@@ -19,29 +19,54 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4868620374016
-    m_Localized: Tengo que encontrar el castillo
+    m_Localized: Tengo que encontrar el castillo.
     m_Metadata:
       m_Items: []
   - m_Id: 43540329746432
-    m_Localized: Para saltar pulsa la tecla de la barra espaciadora
+    m_Localized: Para saltar pulsa la tecla de la barra espaciadora.
     m_Metadata:
       m_Items: []
   - m_Id: 5007057571840
-    m_Localized: Ese saliente es un poco alto pero creo que  saltando puedo superarlo
+    m_Localized: Ese saliente es un poco alto pero creo que  saltando puedo superarlo.
     m_Metadata:
       m_Items: []
   - m_Id: 43828902055936
     m_Localized: "All\xED hay un par de cajas de suministros, se le tienen que haber
-      ca\xEDdo"
+      ca\xEDdo."
     m_Metadata:
       m_Items: []
   - m_Id: 44369254240256
     m_Localized: "Ac\xE9rcate a la caja y pulsa el bot\xF3n izquierdo del rat\xF3n
-      para romperla"
+      para romperla."
     m_Metadata:
       m_Items: []
-  - m_Id: 79557032103936
-    m_Localized: Siguiente
+  - m_Id: 650447788658688
+    m_Localized: Ya he llegado al castillo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 647185584836608
+    m_Localized: "Ac\xE9rcate al cofre y pulsa la tecla E para abrirlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 647155704614912
+    m_Localized: "All\xED delatante hay un cofre, que abr\xE1 dentro?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649124993257472
+    m_Localized: Cuidado hay un enemigo delante. Puedo enfrentarme a el o pasar de
+      largo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649158841290752
+    m_Localized: "Para realizar un ataque pulsa el bot\xF3n izquierdo del rat\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649187710685184
+    m_Localized: "Para realizar una esquiva pulsa el bot\xF3n derecho del rat\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 653342621782016
+    m_Localized: "Para entrar ac\xE9rcate a la puerta y pulsa la tecla E."
     m_Metadata:
       m_Items: []
   references:

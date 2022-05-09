@@ -19,29 +19,54 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4868620374016
-    m_Localized: Tinc que trobar el castell
+    m_Localized: Tinc que trobar el castell.
     m_Metadata:
       m_Items: []
   - m_Id: 5007057571840
     m_Localized: "Aquest sortint \xE9s una mica alt per\xF2 crec que saltant puc
-      superar-ho"
+      superar-ho."
     m_Metadata:
       m_Items: []
   - m_Id: 43540329746432
-    m_Localized: Per saltar prem la tecla de la barra d'espai
+    m_Localized: Per saltar prem la tecla de la barra d'espai.
     m_Metadata:
       m_Items: []
   - m_Id: 43828902055936
-    m_Localized: "All\xE0 hi ha caixes de subministraments, se n'han d'haver caigut"
+    m_Localized: "All\xE0 hi ha caixes de subministraments, se n'han d'haver caigut."
     m_Metadata:
       m_Items: []
   - m_Id: 44369254240256
     m_Localized: "Apropa't a la caixa i prem el bot\xF3 esquerre del ratol\xED per
-      trencar-la"
+      trencar-la."
     m_Metadata:
       m_Items: []
-  - m_Id: 79557032103936
-    m_Localized: "Seg\xFCent"
+  - m_Id: 650447788658688
+    m_Localized: Ja he arribat al castell.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 647185584836608
+    m_Localized: Apropa't al cofre i prem la tecla E per obrir-lo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 647155704614912
+    m_Localized: "All\xE0 delatant hi ha un cofre, que obriu a dins?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649124993257472
+    m_Localized: Compte hi ha un enemic davant. Puc enfrontar-me a ell o passar de
+      llarg.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649158841290752
+    m_Localized: "Per fer un atac premeu el bot\xF3 esquerre del ratol\xED."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 649187710685184
+    m_Localized: "Per fer una esquiva premeu el bot\xF3 dret del ratol\xED."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 653342621782016
+    m_Localized: Per entrar apropa't a la porta i prem la tecla E.
     m_Metadata:
       m_Items: []
   references:
