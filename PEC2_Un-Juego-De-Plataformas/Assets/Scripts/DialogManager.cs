@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
@@ -10,8 +11,9 @@ public class DialogManager : MonoBehaviour
     public TextMeshProUGUI dialogText;
     public Animator animator;
     public CanvasGroup canvasGroup;
+    public Image dialogImageCharacter;
 
-    private Queue<string> sentences;
+    private Queue<Sentence> sentences;
     private static DialogManager dialogManagerInstance;
 
 
@@ -26,15 +28,16 @@ public class DialogManager : MonoBehaviour
         {
             dialogManagerInstance = this;
         }
-        sentences = new Queue<string>();
+        sentences = new Queue<Sentence>();
     }
 
     public void StartDialog(Dialog dialog)
     {
-        sentences.Clear();     
-        foreach(LocalizedString sentence in dialog.sentences)
+        sentences.Clear();
+        foreach(Sentence sentence in dialog.sentences)
         {
-            sentences.Enqueue(sentence.GetLocalizedStringAsync().Result);
+            sentences.Enqueue(sentence);
+
         }
         animator.SetBool("Active", true);
         canvasGroup.interactable = true;
@@ -52,9 +55,10 @@ public class DialogManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        Sentence sentence = sentences.Dequeue();
+        dialogImageCharacter.sprite = sentence.character;
         StopAllCoroutines();
-        StartCoroutine(SetTextSlowly(sentence));
+        StartCoroutine(SetTextSlowly(sentence.text.GetLocalizedStringAsync().Result));
     }
 
     void EndDialogue()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class SpawnCoins : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SpawnCoins : MonoBehaviour
     public float maxSpreadRange = 1.5f;
     public bool open = false;
     public GameObject helpGameObject;
+    public Light2D light2D;
 
     private BoxCollider2D chestCollider;
 
@@ -40,6 +42,7 @@ public class SpawnCoins : MonoBehaviour
             Vector2 force = new Vector2(xForce, yForce);
             coin.GetComponent<Rigidbody2D>().AddRelativeForce(force);
             chestCollider.enabled = false;
+            light2D.enabled = false;
         }
     }
 

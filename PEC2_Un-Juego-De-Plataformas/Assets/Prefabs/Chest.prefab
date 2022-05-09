@@ -279,6 +279,7 @@ MonoBehaviour:
   maxSpreadRange: 1.5
   open: 0
   helpGameObject: {fileID: 4646954891936282732}
+  light2D: {fileID: 6537974075875445037}
 --- !u!61 &330735946
 BoxCollider2D:
   m_ObjectHideFlags: 0

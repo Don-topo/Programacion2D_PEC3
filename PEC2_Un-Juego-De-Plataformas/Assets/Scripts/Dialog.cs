@@ -1,8 +1,10 @@
 using System;
+using UnityEngine;
 using UnityEngine.Localization;
 
 [Serializable]
 public class Dialog
 {        
-    public LocalizedString[] sentences;
+    [SerializeField]
+    public Sentence[] sentences;
 }

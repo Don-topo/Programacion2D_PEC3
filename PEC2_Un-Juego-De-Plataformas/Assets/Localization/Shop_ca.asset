@@ -17,6 +17,38 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 0854429cf6cf6ea469d816bad22212ec, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 128156378025984
+    m_Localized: "Qu\xE8 \xE9s aix\xF2, una botiga?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128427338452992
+    m_Localized: Qui ets?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128467389861888
+    m_Localized: "Tranquil\xB7la, no s\xF3c enemic."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128525623578624
+    m_Localized: No em facis mal.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128559916208128
+    m_Localized: "Qu\xE8 fas aqu\xED?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130082280787968
+    m_Localized: Busco coneixement en aquest castell.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130134478901248
+    m_Localized: "Tinc objectes interessants que et poden ser \xFAtils."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130235834257408
+    m_Localized: D'acord, ensenya'm que tens.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

@@ -17,6 +17,38 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 0854429cf6cf6ea469d816bad22212ec, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 128156378025984
+    m_Localized: What is this, a store?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128427338452992
+    m_Localized: Who are you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128467389861888
+    m_Localized: Don't worry, I'm not an enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128525623578624
+    m_Localized: Do not hurt me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128559916208128
+    m_Localized: "\xBFWhat are you doing here?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130082280787968
+    m_Localized: I seek knowledge in this castle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130134478901248
+    m_Localized: I have interesting objects that you may find useful.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130235834257408
+    m_Localized: Ok, show me what you got.
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

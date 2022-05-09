@@ -191,5 +191,17 @@ public class GameManager : MonoBehaviour
     {
         return playerCanPlay;
     }
+
+    public bool CanPurchaseItem(int price)
+    {
+        return price >= gameInfo.coins;
+    }
+
+    public void PurchaseItem(ShopItem shopItem)
+    {
+        PickUpCoin(-shopItem.price);
+    }
+
+
   
 }

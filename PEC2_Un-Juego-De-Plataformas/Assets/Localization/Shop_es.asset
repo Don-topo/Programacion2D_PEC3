@@ -17,6 +17,38 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 0854429cf6cf6ea469d816bad22212ec, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 128156378025984
+    m_Localized: "Qu\xE9 es esto, una tienda?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128427338452992
+    m_Localized: "Qui\xE9n eres?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128467389861888
+    m_Localized: Tranquila, no soy enemigo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128525623578624
+    m_Localized: "No me hagas da\xF1o."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 128559916208128
+    m_Localized: "Qu\xE9 haces aqu\xED?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130082280787968
+    m_Localized: Busco conocimiento en este castillo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130134478901248
+    m_Localized: "Tengo objetos interesantes que te pueden resultar \xFAtiles."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 130235834257408
+    m_Localized: "Vale, ense\xF1ame que tienes."
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

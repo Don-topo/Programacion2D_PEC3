@@ -48,7 +48,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 647155704614912
-    m_Localized: There is a chest in front of it, what will it open inside?
+    m_Localized: "\xBFThere is a chest in front of it, what will it open inside?"
     m_Metadata:
       m_Items: []
   - m_Id: 649124993257472
