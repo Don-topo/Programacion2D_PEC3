@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip hitClip;
     public AudioClip groundedClip;
     public float jumpMaxTime;
+    public ParticleSystem dustParticle;
+    public ParticleSystem bloodParticle;
 
 
     private AudioSource audioSource;
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
                 rigidbody.AddForce(Vector2.up * jumpForce);
                 isJumping = true;
                 jumpCounter = jumpMaxTime;
+                MakeDust();
             }
 
             if (movement > 0.01f && !playerIsFacingRight)
@@ -200,6 +203,7 @@ public class PlayerController : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        if (grounded) { MakeDust(); }
     }
 
     private void CheckMovement()
@@ -250,6 +254,8 @@ public class PlayerController : MonoBehaviour
         audioSource.Play();
         GameManager.Instance.PlayerHit(damage);
         HitForce();
+        MakeBlood();
+
     }
 
     public void HitForce()
@@ -285,6 +291,7 @@ public class PlayerController : MonoBehaviour
         {
             rigidbody.AddForce(Vector2.left * dashSpeed, ForceMode2D.Impulse);
         }
+        MakeDust();
         StartCoroutine(Dashing());
     }
 
@@ -308,6 +315,16 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = Vector2.zero;
         transform.position = lastGroundedPosition;
         rigidbody.velocity = Vector2.zero;
+    }
+
+    private void MakeDust()
+    {
+        dustParticle.Play();
+    }
+
+    private void MakeBlood()
+    {
+        bloodParticle.Play();
     }
 
 

@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
     public Transform playerPosition;
     public AudioClip hitClip;
     public AudioClip attackClip;
+    public ParticleSystem bloodParticle;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,6 +55,7 @@ public class EnemyController : MonoBehaviour
         healtPoints -= damage;
         audioSource.clip = hitClip;
         audioSource.Play();
+        MakeBlood();
         if(healtPoints <= 0)
         {
             Death();
@@ -130,5 +132,10 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         canMove = true;
     }  
+
+    private void MakeBlood()
+    {
+        bloodParticle.Play();
+    }
 
 }
