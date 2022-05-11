@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public float jumpMaxTime;
     public ParticleSystem dustParticle;
     public ParticleSystem bloodParticle;
+    public ParticleSystem dashParticle;
+    public float dashDistance = 10f;
 
 
     private AudioSource audioSource;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool doubleJump = true;
     private bool dash = true;
+    private bool dashed = false;
     private CapsuleCollider2D capsuleCollider;
 
 
@@ -61,16 +64,20 @@ public class PlayerController : MonoBehaviour
             movement = Input.GetAxisRaw("Horizontal") * movementSpeed;
             Vector3 targetVelocity = new Vector2(movement * 0.2f, rigidbody.velocity.y);
             Vector3 test = Vector3.zero;
-            rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref test, .05f);
-
-            if (Input.GetButtonDown("Jump") && (grounded || doubleJump))
+            if (!isDashing)
+            {
+                rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref test, .05f);
+            }
+            
+            if (Input.GetButtonDown("Jump") && (grounded || doubleJump) && !isDashing)
             {
                 // Jump
                 if (!grounded)
                 {
                     doubleJump = false;
                 }
-                rigidbody.AddForce(Vector2.up * jumpForce);
+                //rigidbody.AddForce(Vector2.up * jumpForce);
+                rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
                 isJumping = true;
                 jumpCounter = jumpMaxTime;
                 MakeDust();
@@ -84,7 +91,7 @@ public class PlayerController : MonoBehaviour
             {
                 FlipPlayer();
             }
-            else if (movement == 0)
+            else if (movement == 0 && !isDashing)
             {
                 rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
             }
@@ -112,9 +119,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space))
             {
-                if (jumpCounter > 0 && isJumping)
+                if (jumpCounter > 0 && isJumping && !isDashing)
                 {
-                    rigidbody.AddForce(Vector2.up * jumpForce);
+                    //rigidbody.AddForce(Vector2.up * jumpForce);
+                    rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
                     jumpCounter -= Time.deltaTime;
                 }
                 else
@@ -129,9 +137,12 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if(!grounded && dash)
-                {                   
-                    rigidbody.AddForce(Vector2.right * jumpForce, ForceMode2D.Impulse);
+                if(!grounded && !isDashing && !dashed)
+                {
+                    //rigidbody.AddForce(Vector2.right * jumpForce, ForceMode2D.Impulse);
+                    dashed = true;
+                    int dir = CalculateDirection();                   
+                    StartCoroutine(TestDashing(dir));
                     dash = false;
                 }
             }
@@ -148,6 +159,18 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         CheckGrounded();
+    }
+
+    private int CalculateDirection()
+    {
+        if (playerIsFacingRight)
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -229,6 +252,7 @@ public class PlayerController : MonoBehaviour
             grounded = true;
             doubleJump = true;
             dash = true;
+            dashed = false;
             if (playerIsFacingRight)
             {
                 xOffset = -2f;
@@ -304,6 +328,20 @@ public class PlayerController : MonoBehaviour
         capsuleCollider.enabled = true;
         rigidbody.isKinematic = false;
         isDashing = false;
+    }
+
+    IEnumerator TestDashing(int direction)
+    {
+        dashParticle.Play();
+        isDashing = true;
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.AddForce(new Vector2(dashDistance * direction, 0), ForceMode2D.Impulse);
+        float gravity = rigidbody.gravityScale;
+        rigidbody.gravityScale = 0f;
+        yield return new WaitForSeconds(0.4f);
+        isDashing = false;
+        rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+        rigidbody.gravityScale = gravity;
     }
 
     public void FallIntoSpikes()
