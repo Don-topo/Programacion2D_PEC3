@@ -2,91 +2,92 @@
 
 
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+# 1. Notas de la versión 1.1
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## 1.1. Corrección de errores
 
-## Add your files
+>- Se ha corregido un error que provocaba que las monedas y los rubíes no se guardasen correctamente.
+>- Se ha corregido el salto astronauta.
+>- Se han ajustado los valores del jugador y los enemigos. Ahora el gameplay será un poco más fluído.
+>- Se ha corregido un error por el que el jugador podía seguir realizando acciones cuando estaba muerto o con el juego en pausa.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## 1.2. Nuevo contenido
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/rgarridovaldepenas/pec-3.git
-git branch -M main
-git push -uf origin main
-```
+>- Se han añadido más detalles gráficos a las escenas del bosque, el castillo y la torre.
+>- Se ha implementado la localización de los textos. Los idiomas disponibles son:
+>   - Castellano
+>   - Inglés
+>   - Catalan
+>- Se ha añadido un nuevo movimiento, el dash: En el aire pulsa la tecla Q para realizar un desplazamiento (este movimiento no genera invulnerabilidad).
+>- Se ha implementado el salto progresivo. El salto se hará más alto en función del tiempo en el que la tecla de espacio esta pulsada.
+>- Se ha implementado el doble salto. En el aire se puede pulsar la tecla de espacio para volver a saltar.
+>- Se ha implementado el roll. Estando en el suelo pulsando el botón secundario del ratón se puede realizar el roll (este movimiento gener invulnerabilidad).
+>- Se ha implementado un sistema de dialogos.
+>- Se ha implementado la subida de nivel mediante rubíes.
+>- Se ha añadido una nueva escena, la tienda:
+>   - En la tienda un misterioso personaje nos venderá objetos a cambio de oro.
+>- Se ha implementado la Cinemachine como cámara principal.
+>- Se han añadido efectos de iluminación en entornos, objetos y personajes.
+>- Se ha implementado la transición entre escenas, el cambio ya no se hará de forma abrupta y sin delay.
+>- Se han añadido efectos de partículas para representar el daño en los personajes.
+>- Se han añadido particulas al jugador para reforzar el feedback de los movimientos al jugador:
+>   - Correr
+>   - Saltar
+>   - Dash
+>   - Roll
+>- Se ha implementado un menú de opciones en la escena del menú inicial para seleccionar el idioma de la aplicación.
+>- Se ha implementado una escena para mostrar los créditos.
+>- Se ha añadido la versión del juego en la pantalla principal.
 
-## Integrate with your tools
+# 2. Nuevas pantallas
+## 2.1. La tienda
 
-- [ ] [Set up project integrations](https://gitlab.com/rgarridovaldepenas/pec-3/-/settings/integrations)
+# 3. Nuevas acciones del jugador
 
-## Collaborate with your team
+## 3.1. Salto progressivo
+## 3.2. Doble salto
+## 3.3. Dash
+## 3.4. Roll
+## 3.5. Dash VS Roll
+## 3.6. Subir de nivel
+## 3.7. Comprar objetos
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+# 4. Sistema de dialogos
+Desde los primeros momentos de diseño del juego tenía pensado implementar un sistema de dialogos. Creo que en un juego de este estilo es una aportación bastante importante.
 
-## Test and Deploy
+![Dialog](/images/dialog.png)
 
-Use the built-in continuous integration in GitLab.
+# 4.1. Funcionamiento
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-***
 
-# Editing this README
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+# 5. Localización del juego
+Todo desarrollador busca que su juego pueda llegar al mayor número de personas posible. Por este motivo siempre es muy aconsejable traducir todos los textos del juego como mínimo.
+Para hacer esta parte incialmente tenía pensado utilizar un excel donde cada columna era un idioma y la primera fila era el código del idioma.
+Buscando maneras eficaces de implementar esto he dado con un paquete de Unity llamado Localization que implementa este sistema.
+Su utilización es un poco engorrosa al principio pero una vez se coge práctica la utilización es bastante metódica.
+Lo primero es crear un Location para cada idioma que queremos tener. En mi caso he creado el de catalán, castellano y inglés.
 
-## Name
-Choose a self-explaining name for your project.
+![LocationConfig](images/LocationConfig.png)
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+El siguiente paso es crear la localization table. La localization table nos permite asignar un identicador a los Location que queramos y a su vez, indicar la cadena que queremos que representar en cada uno.
+![LocalizationTable](images/LocalizationTable.png)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+En mi caso he creado múltiples tables, unaa para cada escena del juego y otra para el menú de pausa que se encuentra en todas las escenas.
+Finalmente queda utilizar estas tablas. Se puede hacer directamente en el inspector de un GameObject de Text o TextMeshPro añadiendo un String Event.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+![StringEvent](images/StringEvent.png)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+# 6. Iluminación
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+# 7. Objetos interactuables
+Hay ciertos objetos sobre los que el jugador puede interactuar con ellos con la tecla E. El problema que tenía era que no era posible saber con que objetos era capaz de interactuar.
+Para facilitar esto he añadido una funcionalidad nueva en la que se muestra al jugador la tecla de interacción cuando pasa cerca de un objeto interactuable.
+A todos los objetos interactuables les he añadido un GameObject (como hijo) con un SpriteRender con la imagen de la tecla de interacción. Este GameObject por defecto lo pongo en disabled para que no se vea.
+Seguidamente he aprovechado el collider con trigger que ya tenía el objeto para añadir el enable del GameObject.
+Finalmente he añadido el OnTriggerExit del jugador para volver a ocultar el sprite.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+![Interactable](images/interactable.png)

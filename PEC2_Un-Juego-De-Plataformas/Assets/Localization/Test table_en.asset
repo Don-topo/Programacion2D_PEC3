@@ -50,5 +50,17 @@ MonoBehaviour:
     m_Localized: A Platform Game
     m_Metadata:
       m_Items: []
+  - m_Id: 3244951611854848
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3264299743268864
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3265263292338176
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

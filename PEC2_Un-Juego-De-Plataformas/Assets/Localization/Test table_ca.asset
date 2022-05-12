@@ -50,5 +50,17 @@ MonoBehaviour:
     m_Localized: Un Joc De Plataformes
     m_Metadata:
       m_Items: []
+  - m_Id: 3244951611854848
+    m_Localized: Opcions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3264299743268864
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3265263292338176
+    m_Localized: Tornar
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

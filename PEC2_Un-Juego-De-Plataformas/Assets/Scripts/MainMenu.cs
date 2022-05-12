@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public Canvas mainCanvas;
     public Canvas exitCanvas;
+    public Canvas optionsCanvas;
     public GameObject continueButton;
     public Animator sceneTransitionAnimator;
 
@@ -52,6 +53,18 @@ public class MainMenu : MonoBehaviour
     {
         exitCanvas.gameObject.SetActive(false);
         mainCanvas.gameObject.SetActive(true);
+    }
+
+    public void Options()
+    {
+        mainCanvas.gameObject.SetActive(false);
+        optionsCanvas.gameObject.SetActive(true);
+    }
+
+    public void BackToMainMenu()
+    {
+        mainCanvas.gameObject.SetActive(true);
+        optionsCanvas.gameObject.SetActive(false);
     }
 
     IEnumerator LoadLevel()
