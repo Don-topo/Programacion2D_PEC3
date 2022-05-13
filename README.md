@@ -42,12 +42,18 @@
 
 # 2. Nuevas pantallas
 ## 2.1. La tienda
-
+## 2.2. La pantalla de créditos
 # 3. Nuevas acciones del jugador
 
 ## 3.1. Salto progressivo
 ## 3.2. Doble salto
+
+Para implementar el doble salto he añadido una variable booleana para saber si puedo volver a saltar. Con esto cada vez que se pulsa la barra espaciadora se mira si el jugador esta en el suelo o si puede hacer el doble salto. Una vez dentro dependiendo de si el jugador no esta tocando el suelo se actualiza la variable booleana de doble salto.
+El valor de la variable se reinicia en el método que comprueba si el jugador esta tocando el suelo.
+Al hacer esto e visto que el feedback del doble salto era casi nulo y al jugador le costaba ver cuando había hecho el doble salto. Para solucionar esto le he añadido un sistema de partículas blancas pequeñas a los píes del personaje y cada vez que se realiza la acción de saltar se reproduce.
+
 ## 3.3. Dash
+
 ## 3.4. Roll
 ## 3.5. Dash VS Roll
 ## 3.6. Subir de nivel

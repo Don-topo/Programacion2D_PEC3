@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
     public AudioClip attackClip;
     public AudioClip hitClip;
     public AudioClip groundedClip;
+    public AudioClip levelUpClip;
+    public AudioClip dashClip;
     public float jumpMaxTime;
     public ParticleSystem dustParticle;
     public ParticleSystem bloodParticle;
     public ParticleSystem dashParticle;
+    public ParticleSystem levelUpParticle;
     public float dashDistance = 10f;
 
 
@@ -38,8 +41,6 @@ public class PlayerController : MonoBehaviour
     private float nextAttackTime = 0f;
     private Vector3 lastGroundedPosition;
     private float jumpCounter;
-    private bool doubleJumpEnabled = false;
-    private bool dashEnabled = false;
     private bool isJumping = true;
     private bool isDashing = false;
     private bool doubleJump = true;
@@ -76,7 +77,6 @@ public class PlayerController : MonoBehaviour
                 {
                     doubleJump = false;
                 }
-                //rigidbody.AddForce(Vector2.up * jumpForce);
                 rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
                 isJumping = true;
                 jumpCounter = jumpMaxTime;
@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (jumpCounter > 0 && isJumping && !isDashing)
                 {
-                    //rigidbody.AddForce(Vector2.up * jumpForce);
                     rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
                     jumpCounter -= Time.deltaTime;
                 }
@@ -139,7 +138,6 @@ public class PlayerController : MonoBehaviour
             {
                 if(!grounded && !isDashing && !dashed)
                 {
-                    //rigidbody.AddForce(Vector2.right * jumpForce, ForceMode2D.Impulse);
                     dashed = true;
                     int dir = CalculateDirection();                   
                     StartCoroutine(TestDashing(dir));
@@ -249,6 +247,11 @@ public class PlayerController : MonoBehaviour
         {
             float xOffset;
 
+            if (!grounded)
+            {
+                audioSource.clip = groundedClip;
+                audioSource.Play();
+            }
             grounded = true;
             doubleJump = true;
             dash = true;
@@ -260,7 +263,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 xOffset = +2f;
-            }
+            }            
             lastGroundedPosition = transform.position + new Vector3(xOffset, 0, 0);
             animator.SetBool("Jumping", false);
         }
@@ -333,6 +336,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator TestDashing(int direction)
     {
         dashParticle.Play();
+        audioSource.clip = dashClip;
+        audioSource.Play();
         isDashing = true;
         rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
         rigidbody.AddForce(new Vector2(dashDistance * direction, 0), ForceMode2D.Impulse);
@@ -365,5 +370,11 @@ public class PlayerController : MonoBehaviour
         bloodParticle.Play();
     }
 
+    public void MakeLevelUp()
+    {
+        audioSource.clip = levelUpClip;
+        audioSource.Play();
+        levelUpParticle.Play();
+    }
 
 }

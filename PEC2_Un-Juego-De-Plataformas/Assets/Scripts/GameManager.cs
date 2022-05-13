@@ -129,17 +129,22 @@ public class GameManager : MonoBehaviour
     public void PickUpRuby(int rubyValue)
     {
         gameInfo.rubies += rubyValue;
-        rubiesText.SetText(gameInfo.rubies.ToString());
+        rubiesText.SetText(gameInfo.rubies.ToString() + " / " + (gameInfo.levelRange[gameInfo.playerLevel-1]).ToString());
         var animatorState = collectibles.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         if (animatorState.IsName("HideCollectibles") && animatorState.normalizedTime >= 1.0f)
         {
             collectibles.GetComponent<Animator>().SetTrigger("Show");
-        }        
+        }
+        if(gameInfo.rubies >= gameInfo.levelRange[gameInfo.playerLevel - 1])
+        {
+            LevelUp();
+        }
     }
 
     private void UpdateHealthUI()
     {
-        for(int i = 0; i < gameInfo.playerMaxhealth; i++)
+        int maxHealth = 10;
+        for(int i = 0; i < maxHealth; i++)
         {
             if(i < gameInfo.playerhealth)
             {
@@ -149,7 +154,7 @@ public class GameManager : MonoBehaviour
             {
                 health[i].GetComponent<SpriteRenderer>().sprite = emptyHeart;
             }
-            
+            health[i].SetActive(i<gameInfo.playerMaxhealth);
         }
     }
 
@@ -202,6 +207,14 @@ public class GameManager : MonoBehaviour
         PickUpCoin(-shopItem.price);
     }
 
-
+    private void LevelUp()
+    {
+        gameInfo.playerMaxhealth++;
+        gameInfo.playerhealth = gameInfo.playerMaxhealth;
+        gameInfo.playerLevel++;
+        player.GetComponent<PlayerController>().MakeLevelUp();
+        UpdateHealthUI();        
+        PickUpRuby(-gameInfo.rubies);
+    }
   
 }
