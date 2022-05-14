@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         player.GetComponent<PlayerController>().Death();
+        playerCanPlay = false;
         StartCoroutine(LoadLevel(4));        
     }
 

@@ -41,10 +41,15 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(healtPoints > 0 && canMove)
+        if(canMove && GameManager.Instance.PlayerCanMove())
         {
             Move();
             Attack();
+        }
+        else
+        {
+            rigidbody2D.velocity = Vector2.zero;
+            animator.SetBool("Moving", false);
         }        
     }
 
@@ -78,6 +83,7 @@ public class EnemyController : MonoBehaviour
         animator.SetTrigger("Death");
         rigidbody2D.velocity = Vector2.zero;
         rigidbody2D.isKinematic = true;
+        canMove = false;
         foreach(Collider2D cl in colliders2D)
         {
             cl.enabled = false;

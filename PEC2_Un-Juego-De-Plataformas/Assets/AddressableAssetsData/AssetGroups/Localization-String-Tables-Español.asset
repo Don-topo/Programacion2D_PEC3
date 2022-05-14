@@ -53,6 +53,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     - Preload
+  - m_GUID: 8b564f830fd97fa4397c495ebcb271c1
+    m_Address: BossFight_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ed43ba55ec471d14fb250f39eaa68e69, type: 2}
   m_SchemaSet:

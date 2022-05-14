@@ -57,6 +57,10 @@ MonoBehaviour:
     m_Address: Assets/Localization/EndGame Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 2b4d0e2fe9a802c4da5f30e650a7bb69
+    m_Address: Assets/Localization/BossFight Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ed43ba55ec471d14fb250f39eaa68e69, type: 2}
   m_SchemaSet:
