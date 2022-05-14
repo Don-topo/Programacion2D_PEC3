@@ -14,9 +14,8 @@ public class GoblinController : EnemyController
     [SerializeField]
     LayerMask floorMask;
 
-    private float jumpForce = 3f;
-    private float rushForce = 15f;
-    private bool grounded = true;
+    private float rushForce = 15f;    
+
 
     public GoblinController()
     {
@@ -25,19 +24,15 @@ public class GoblinController : EnemyController
         damage = 1;
         playerRange = 10f;
         movement = 3.5f;
-        attackSpeed = 0.5f;        
+        attackSpeed = 1.5f;        
     }
 
     protected override void Attack()
     {
         if (!isAttacking)
         {
-            // TODO select attack type randomly
-            //RegularAttack();
-            //Rush();
-            CheckGrounded();
-            Jump();
-        }
+            RegularAttack();
+        }          
     }
 
     protected override void Move()
@@ -46,14 +41,7 @@ public class GoblinController : EnemyController
 
         if (distance < playerRange && !isAttacking)
         {
-            if (playerPosition.transform.position.x < transform.position.x && enemyIsFacingRight)
-            {
-                Flip();
-            }
-            else if (playerPosition.transform.position.x > transform.position.x && !enemyIsFacingRight)
-            {
-                Flip();
-            }
+            CheckFlip();
             var move = new Vector3(playerPosition.position.x, transform.position.y, transform.position.z);
             var dir = (move - transform.position).normalized * movement;
             rigidbody2D.velocity = dir;
@@ -69,59 +57,56 @@ public class GoblinController : EnemyController
     {        
         if(healtPoints - damage <= 0)
         {
+            Death();
             GameManager.Instance.LevelCompleted(4);
         }
-        base.GetHit(damage);
-        healthSprite.sprite = healtBars[healtPoints];
-    }    
-
-    private void Rush()
-    {
-        StartCoroutine(Rushing());
-    }
+        else
+        {
+            base.GetHit(damage);
+            healthSprite.sprite = healtBars[healtPoints - 1];
+        }        
+    }  
 
     private void RegularAttack()
     {
         float distance = Mathf.Abs(playerPosition.position.x - attackZone.transform.position.x);
         if (distance <= attackRange)
         {
-            rigidbody2D.velocity = Vector2.zero;
-            if (attackTime == 0f)
+            int randomValue = Random.Range(0, 100);
+            if(randomValue < 65)
             {
-                isAttacking = true;
-                attackTime = Time.time + 1f / attackRange;
+                StartCoroutine(MeleeAttack());
             }
-            if (isAttacking)
+            else
             {
-                if (Time.time >= attackTime)
-                {
-                    base.Attack();
-                    isAttacking = false;
-                }
+                StartCoroutine(Rushing());
             }
         }
         else
         {
-            isAttacking = false;
             attackTime = 0f;
-        }
+        }      
     }
 
-    private void Jump()
+    IEnumerator MeleeAttack()
     {
+        rigidbody2D.velocity = Vector2.zero;
         isAttacking = true;
-        if (enemyIsFacingRight)
+        yield return new WaitForSeconds(attackTime);
+        base.Attack();
+        isAttacking = false;        
+    }
+
+    private void CheckFlip()
+    {
+        if (playerPosition.transform.position.x < transform.position.x && enemyIsFacingRight)
         {
-            //rigidbody2D.AddForce(Vector2.left * jumpForce, ForceMode2D.Impulse);
-            rigidbody2D.velocity = Vector2.zero;
-            rigidbody2D.velocity = new Vector2(10, jumpForce);
+            Flip();
         }
-        else
+        else if (playerPosition.transform.position.x > transform.position.x && !enemyIsFacingRight)
         {
-            //rigidbody2D.AddForce(Vector2.right * jumpForce, ForceMode2D.Impulse);
-            rigidbody2D.velocity = new Vector2(-10, jumpForce);
+            Flip();
         }
-        isAttacking = false;
     }
 
     IEnumerator Rushing()
@@ -130,7 +115,8 @@ public class GoblinController : EnemyController
         isAttacking = true;
         rigidbody2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(2);
-        if (enemyIsFacingRight)
+        CheckFlip();
+        if (playerPosition.transform.position.x > transform.position.x)
         {
             direction = 1;
         }
@@ -147,25 +133,10 @@ public class GoblinController : EnemyController
         rigidbody2D.velocity = Vector2.zero;
         yield return new WaitForSeconds(1f);
         isAttacking = false;
-    }
+    } 
 
-    private void CheckGrounded()
+    private int CalculatePercentage()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundTransform.position, Vector2.down, 0.25f, floorMask);
-
-        if (hit == true)
-        {
-            if (!grounded)
-            {
-                audioSource.clip = groundedClip;
-                audioSource.Play();
-            }
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
-        }
+       return Random.Range(0, 100);
     }
-
 }

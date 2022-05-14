@@ -27,8 +27,8 @@ public class MushroomController : EnemyController
             {
                 Flip();
             }            
-            var test = new Vector3(playerPosition.position.x, transform.position.y, transform.position.z);
-            var dir = (test - transform.position).normalized * movement;
+            var direction = new Vector3(playerPosition.position.x, transform.position.y, transform.position.z);
+            var dir = (direction - transform.position).normalized * movement;
             rigidbody2D.velocity = dir;
             animator.SetBool("Moving", true);
         }

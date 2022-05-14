@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     protected bool enemyIsFacingRight = true;
     protected float movement = 0;
     protected bool canMove = true;
+    protected bool isAttacked = false;
     protected float attackSpeed = 2f;
     protected bool isAttacking = false;
     protected float attackTime = 0f;
@@ -41,7 +42,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove && GameManager.Instance.PlayerCanMove())
+        if(canMove && GameManager.Instance.PlayerCanMove() && !isAttacked)
         {
             Move();
             Attack();
@@ -140,9 +141,9 @@ public class EnemyController : MonoBehaviour
 
     protected IEnumerator WaitHit()
     {
-        canMove = false;
+        isAttacked = true;
         yield return new WaitForSeconds(1.5f);
-        canMove = true;
+        canMove = false;
     }  
 
     private void MakeBlood()

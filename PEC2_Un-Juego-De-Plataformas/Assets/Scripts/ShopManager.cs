@@ -8,6 +8,8 @@ public class ShopManager : MonoBehaviour
     public static ShopManager Instance { get { return shopManager; } }
     public ParticleSystem purchaseparticles;
 
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -18,6 +20,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             shopManager = this;
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
@@ -31,6 +34,7 @@ public class ShopManager : MonoBehaviour
             Destroy(item.gameObject);
             purchaseparticles.transform.position = item.transform.position;
             purchaseparticles.Play();
+            audioSource.Play();
             ItemAction(item.name);
             // TODO If is posible show dialog
         }
