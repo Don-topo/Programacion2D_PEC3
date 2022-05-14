@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Sprite emptyHeart;
     public Canvas pauseCanvas;
     public Canvas confirmCanvas;
+    public Animator sceneTransitionAnimator;
 
 
     private GameInfo gameInfo;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     private bool isGameOnConfirmedPage = false;
     private static GameManager gmInstance;
     private bool playerCanPlay = true;
+    private float transitionTime = 1f;
+
 
     public static GameManager Instance { get { return gmInstance; } }
     
@@ -43,7 +46,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameInfo = FileManager.LoadGameInfo();
+        player.GetComponent<PlayerController>().SetDamage(gameInfo.attackIncreased);
         UpdateHealthUI();
+        PickUpRuby(0);
+        PickUpCoin(0);
     }
 
     // Update is called once per frame
@@ -171,15 +177,22 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        player.GetComponent<PlayerController>().Death();        
-        SceneManager.LoadScene("EndGame");
+        player.GetComponent<PlayerController>().Death();
+        StartCoroutine(LoadLevel(4));        
     }
 
-    public void LevelCompleted()
+    public void LevelCompleted(int nextLevel)
     {
-        gameInfo.currentLevel++;       
+        gameInfo.currentLevel = nextLevel;       
         FileManager.SaveData(gameInfo);
-        SceneManager.LoadScene(gameInfo.currentLevel);
+        StartCoroutine(LoadLevel(gameInfo.currentLevel));
+    }
+
+    IEnumerator LoadLevel(int level)
+    {
+        sceneTransitionAnimator.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(level);
     }
 
     public void StopPlayer()
@@ -199,22 +212,39 @@ public class GameManager : MonoBehaviour
 
     public bool CanPurchaseItem(int price)
     {
-        return price >= gameInfo.coins;
+        return price <= gameInfo.coins;
     }
 
-    public void PurchaseItem(ShopItem shopItem)
+    public void PurchaseItem(int price)
     {
-        PickUpCoin(-shopItem.price);
+        PickUpCoin(-price);
     }
 
     private void LevelUp()
+    {
+        UpdateLevelData();
+        PickUpRuby(-gameInfo.rubies);
+    }
+
+    public void IncreaseLife()
+    {
+        UpdateLevelData();
+    }
+
+
+    private void UpdateLevelData()
     {
         gameInfo.playerMaxhealth++;
         gameInfo.playerhealth = gameInfo.playerMaxhealth;
         gameInfo.playerLevel++;
         player.GetComponent<PlayerController>().MakeLevelUp();
-        UpdateHealthUI();        
-        PickUpRuby(-gameInfo.rubies);
+        UpdateHealthUI();
+    }
+
+    public void IncreasePlayerDamage(int amount)
+    {
+        gameInfo.attackIncreased += amount;
+        player.GetComponent<PlayerController>().SetDamage(gameInfo.attackIncreased);
     }
   
 }

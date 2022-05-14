@@ -37,6 +37,26 @@ MonoBehaviour:
     m_Address: Assets/Localization/Shop Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 728afa5774a10f845aacdf08b245ad64
+    m_Address: Assets/Localization/ShopItems Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: f05c80ff0b0764c4594be4f0a425bd3e
+    m_Address: Assets/Localization/SwordItem Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 32d044c87874079419c7ce8814b45a64
+    m_Address: Assets/Localization/PotionItem Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e6d7a03a633403c4494bae8df4afa537
+    m_Address: Assets/Localization/HeartPotionItem Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 42a7774229b2aac4e816b2db36d9d5ae
+    m_Address: Assets/Localization/EndGame Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ed43ba55ec471d14fb250f39eaa68e69, type: 2}
   m_SchemaSet:

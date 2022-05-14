@@ -4,27 +4,60 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    private readonly int maxBuyItems = 3;
-    private ShopItem[] shopItems;
+    private static ShopManager shopManager;
+    public static ShopManager Instance { get { return shopManager; } }
+    public ParticleSystem purchaseparticles;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        PrepareShop();
+        if(shopManager != null && shopManager != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            shopManager = this;
+        }
     }
 
-    private void PrepareShop()
+    public void PurchaseItem(ShopItem item)
     {
+        // TODO Show dialog    
+        ItemInfo itemInfo = item.GetComponent<ShopItem>().itemInfo;
+        if (GameManager.Instance.CanPurchaseItem(itemInfo.price))
+        {
+            GameManager.Instance.PurchaseItem(itemInfo.price);
+            Destroy(item.gameObject);
+            purchaseparticles.transform.position = item.transform.position;
+            purchaseparticles.Play();
+            ItemAction(item.name);
+            // TODO If is posible show dialog
+        }
+        else
+        {
+            // TODO can't buy dialog
+            
+        }
+
+
 
     }
 
-    public void PurchaseItem(GameObject item)
+    private void ItemAction(string name)
     {
-        // TODO Show dialog
-        // TODO Can i buy it?       
-        // TODO Buy it
-        // TODO Destroy Gameobject
-        // TODO If is not posible show dialog
+        switch (name)
+        {
+            case "SwordBuy":
+                GameManager.Instance.IncreasePlayerDamage(1);
+                break;
+            case "HealthBuy":
+                GameManager.Instance.IncreaseLife();
+                break;
+            case "PotionBuy":
+                GameManager.Instance.PickUpPotion();
+                break;
+        }
     }
 
     

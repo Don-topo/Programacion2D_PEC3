@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dashParticle;
     public ParticleSystem levelUpParticle;
     public float dashDistance = 10f;
+    public float rollDistance = 15f;
 
 
     private AudioSource audioSource;
@@ -44,17 +45,17 @@ public class PlayerController : MonoBehaviour
     private bool isJumping = true;
     private bool isDashing = false;
     private bool doubleJump = true;
-    private bool dash = true;
     private bool dashed = false;
-    private CapsuleCollider2D capsuleCollider;
+    private bool isRolling = false;
 
 
     private void Awake()
     {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Hit"), LayerMask.NameToLayer("Rolling"));
+
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
             movement = Input.GetAxisRaw("Horizontal") * movementSpeed;
             Vector3 targetVelocity = new Vector2(movement * 0.2f, rigidbody.velocity.y);
             Vector3 test = Vector3.zero;
-            if (!isDashing)
+            if (!isDashing && !isRolling)
             {
                 rigidbody.velocity = Vector3.SmoothDamp(rigidbody.velocity, targetVelocity, ref test, .05f);
             }
@@ -91,16 +92,16 @@ public class PlayerController : MonoBehaviour
             {
                 FlipPlayer();
             }
-            else if (movement == 0 && !isDashing)
+            else if (movement == 0 && !isDashing && !isRolling)
             {
                 rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
             }
 
             CheckMovement();
 
-            if (Input.GetMouseButtonDown(1) && grounded)
+            if (Input.GetMouseButtonDown(1) && grounded && !isRolling)
             {
-                Dash();
+                Roll();
             }
 
             if (Time.time >= nextAttackTime)
@@ -140,8 +141,7 @@ public class PlayerController : MonoBehaviour
                 {
                     dashed = true;
                     int dir = CalculateDirection();                   
-                    StartCoroutine(TestDashing(dir));
-                    dash = false;
+                    StartCoroutine(Dashing(dir));
                 }
             }
         }
@@ -215,6 +215,10 @@ public class PlayerController : MonoBehaviour
             {
                 cl.GetComponent<CompleteLevel>().EndLevel();
             }
+            else if (cl.gameObject.CompareTag("Item"))
+            {
+                cl.GetComponent<ShopItem>().Purchase();
+            }
         }
     }
 
@@ -254,7 +258,6 @@ public class PlayerController : MonoBehaviour
             }
             grounded = true;
             doubleJump = true;
-            dash = true;
             dashed = false;
             if (playerIsFacingRight)
             {
@@ -305,35 +308,41 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Dash()
+    private void Roll()
     {
-        // Dash
         animator.SetTrigger("Dash");
-        rigidbody.velocity = Vector2.zero;
+        int direction;
+
         if (playerIsFacingRight)
         {
-            rigidbody.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);            
+            direction = 1;
         }
         else
         {
-            rigidbody.AddForce(Vector2.left * dashSpeed, ForceMode2D.Impulse);
+            direction = -1;
         }
         MakeDust();
-        StartCoroutine(Dashing());
+        StartCoroutine(Rolling(direction));
     }
 
-    IEnumerator Dashing()
+    IEnumerator Rolling(int direction)
     {
-        rigidbody.isKinematic = true;
-        capsuleCollider.enabled = false;
-        isDashing = true;
-        yield return new WaitForSeconds(1);
-        capsuleCollider.enabled = true;
-        rigidbody.isKinematic = false;
-        isDashing = false;
+        isRolling = true;
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, 0);
+        rigidbody.velocity = Vector2.zero;
+        rigidbody.AddForce(new Vector2(rollDistance * direction, 0), ForceMode2D.Impulse);
+        float gravity = rigidbody.gravityScale;
+        rigidbody.gravityScale = 0f;
+        gameObject.layer = LayerMask.NameToLayer("Rolling");
+        yield return new WaitForSeconds(0.5f);
+        rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+        isRolling = false;
+        rigidbody.gravityScale = gravity;
+        gameObject.layer = LayerMask.NameToLayer("Hit");
+        
     }
 
-    IEnumerator TestDashing(int direction)
+    IEnumerator Dashing(int direction)
     {
         dashParticle.Play();
         audioSource.clip = dashClip;
@@ -377,4 +386,13 @@ public class PlayerController : MonoBehaviour
         levelUpParticle.Play();
     }
 
+    public void SetDamage(int damage)
+    {
+        playerDamage = damage;
+    }
+
+    public bool IsInvulnerable()
+    {
+        return isRolling;
+    }
 }

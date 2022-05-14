@@ -257,6 +257,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3477273897303205776, guid: 2b0e083ece28af54183e4fbf7fc09c6b, type: 3}
+      propertyPath: m_text
+      value: '0 / 0
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477273897303205776, guid: 2b0e083ece28af54183e4fbf7fc09c6b, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477273897303205777, guid: 2b0e083ece28af54183e4fbf7fc09c6b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 265.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477273897303205777, guid: 2b0e083ece28af54183e4fbf7fc09c6b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.02
+      objectReference: {fileID: 0}
     - target: {fileID: 5652131460099081858, guid: 2b0e083ece28af54183e4fbf7fc09c6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

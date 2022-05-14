@@ -96,7 +96,10 @@ public class EnemyController : MonoBehaviour
         {
             if (cl.gameObject.CompareTag("Player"))
             {
-                cl.GetComponent<PlayerController>().GetHit(damage);
+                if (!cl.GetComponent<PlayerController>().IsInvulnerable())
+                {
+                    cl.GetComponent<PlayerController>().GetHit(damage);
+                }                
             }
         }
     }
@@ -105,7 +108,10 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerController>().GetHit(damage);
+            if (!collision.GetComponent<PlayerController>().IsInvulnerable())
+            {
+                collision.gameObject.GetComponent<PlayerController>().GetHit(damage);
+            }            
         }
     }
 

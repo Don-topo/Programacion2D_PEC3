@@ -6,6 +6,7 @@ public class CompleteLevel : MonoBehaviour
 {
 
     public GameObject helpGameObject;
+    public int nextLevel;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,6 +26,6 @@ public class CompleteLevel : MonoBehaviour
 
     public void EndLevel()
     {
-        GameManager.Instance.LevelCompleted();
+        GameManager.Instance.LevelCompleted(nextLevel);
     }
 }

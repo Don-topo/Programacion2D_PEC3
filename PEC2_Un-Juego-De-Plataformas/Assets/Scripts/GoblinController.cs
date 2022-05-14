@@ -76,11 +76,16 @@ public class GoblinController : EnemyController
     {        
         if(healtPoints - damage <= 0)
         {
-            GameManager.Instance.LevelCompleted();
+            GameManager.Instance.LevelCompleted(4);
         }
         base.GetHit(damage);
         healthSprite.sprite = healtBars[healtPoints];
     }    
+
+    private void Rush()
+    {
+
+    }
 
     private void Jump()
     {

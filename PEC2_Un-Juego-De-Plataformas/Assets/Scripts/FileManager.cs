@@ -27,7 +27,7 @@ public static class FileManager
         else
         {
             int[] range = new int[5] { 10, 20, 30, 40, 50};
-            return new GameInfo(1, 0, 0, 1, 4, 1, false, false, 0, range);
+            return new GameInfo(1, 0, 0, 1, 4, 1, false, false, 1, range);
         }
     }
 
