@@ -59,6 +59,8 @@
 >- Se ha añadido un nuevo ataque al jefe final, el Rush. Ahora el jefe cargará durante unos momentos y realizará una embestida en la dirección del jugador.
 >- Se ha añadido la versión del juego en la pantalla principal.
 
+[Video con la demo](videos/Presentation.mp4)
+
 # 2. Nuevas pantallas
 
 ## 2.1. La tienda
